@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
 import { GraduationCap, Calendar } from 'lucide-react';
+import { useReveal } from '../hooks/useReveal';
 
 interface EducationItem {
   period: string;
@@ -12,34 +12,16 @@ interface EducationItem {
 // TODO: Edit data pendidikan kamu di sini. Tambahkan pendidikan sebelumnya (SMA/SMK) jika perlu.
 const EDUCATION: EducationItem[] = [
   {
-    period: '2022 - Sekarang',
+    period: 'Mulai 2022 · Cuti kuliah',
     institution: 'Universitas Muhammadiyah Surakarta (UMS)',
     degree: 'S1 Informatika',
-    description: 'Fokus mempelajari software development, artificial intelligence, dan data science. Aktif dalam pengembangan projek-projek berbasis AI.',
-    current: true,
+    description: 'Sedang cuti / tidak aktif berkuliah. Studi S1 Informatika belum selesai; melanjutkan pembelajaran mandiri di bidang TI dan AI.',
+    current: false,
   },
 ];
 
 export default function Education() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.reveal');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>();
 
   return (
     <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
@@ -60,15 +42,15 @@ export default function Education() {
           <div className="space-y-8">
             {EDUCATION.map((item, idx) => (
               <div
-                key={idx}
+                key={item.institution + idx}
                 className="reveal relative flex gap-6"
                 style={{ transitionDelay: `${idx * 200}ms` }}
               >
                 {/* Timeline dot */}
                 <div className="hidden sm:flex flex-shrink-0 w-16 justify-center">
                   <div className={`relative z-10 w-4 h-4 rounded-full mt-6 ${
-                    item.current 
-                      ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
+                    item.current
+                      ? 'bg-blue-500 shadow-lg shadow-blue-500/50'
                       : 'bg-gray-400 dark:bg-gray-600'
                   }`}>
                     {item.current && (

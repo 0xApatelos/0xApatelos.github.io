@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { 
-  Code2, Database, Globe, Terminal, Cpu, Smartphone,
-  Brain, GitBranch, Palette, Server, Zap
-} from 'lucide-react';
+import React from 'react';
+import { Code2, Database, Terminal, Brain, GitBranch, Server, Monitor, Network, Wrench, Bot, Workflow, Globe } from 'lucide-react';
+import { useReveal } from '../hooks/useReveal';
 
 interface Skill {
   name: string;
@@ -10,67 +8,40 @@ interface Skill {
   color: string;
 }
 
-// TODO: Edit daftar skill sesuai kemampuan kamu. Tambah/hapus/ubah sesuai kebutuhan.
+// Fokus keterampilan; bukan klaim sertifikasi atau tingkat keahlian.
 const SKILLS: { category: string; items: Skill[] }[] = [
-  {
-    category: 'Languages',
-    items: [
-      { name: 'Python', icon: <Code2 className="h-6 w-6" />, color: 'from-yellow-400 to-blue-500' },
-      { name: 'TypeScript', icon: <Code2 className="h-6 w-6" />, color: 'from-blue-400 to-blue-600' },
-      { name: 'JavaScript', icon: <Zap className="h-6 w-6" />, color: 'from-yellow-300 to-yellow-500' },
-      { name: 'HTML/CSS', icon: <Globe className="h-6 w-6" />, color: 'from-orange-400 to-blue-400' },
-    ],
-  },
-  {
-    category: 'Frameworks & Tools',
-    items: [
-      { name: 'React', icon: <Cpu className="h-6 w-6" />, color: 'from-cyan-400 to-blue-500' },
-      { name: 'Next.js', icon: <Server className="h-6 w-6" />, color: 'from-gray-400 to-gray-600' },
-      { name: 'TailwindCSS', icon: <Palette className="h-6 w-6" />, color: 'from-teal-400 to-cyan-500' },
-      { name: 'Node.js', icon: <Terminal className="h-6 w-6" />, color: 'from-green-400 to-green-600' },
-    ],
-  },
-  {
-    category: 'AI & Data',
-    items: [
-      { name: 'Machine Learning', icon: <Brain className="h-6 w-6" />, color: 'from-purple-400 to-pink-500' },
-      { name: 'Data Analysis', icon: <Database className="h-6 w-6" />, color: 'from-emerald-400 to-teal-500' },
-      { name: 'Prompt Engineering', icon: <Smartphone className="h-6 w-6" />, color: 'from-indigo-400 to-purple-500' },
-      { name: 'Git & CI/CD', icon: <GitBranch className="h-6 w-6" />, color: 'from-red-400 to-orange-500' },
-    ],
-  },
+  { category: 'IT Specialist · Fondasi & Praktik', items: [
+    { name: 'Troubleshooting', icon: <Wrench className="h-6 w-6" />, color: 'from-blue-400 to-cyan-500' },
+    { name: 'Sistem Operasi', icon: <Monitor className="h-6 w-6" />, color: 'from-purple-400 to-pink-500' },
+    { name: 'Dasar Jaringan', icon: <Network className="h-6 w-6" />, color: 'from-emerald-400 to-teal-500' },
+    { name: 'Administrasi Sistem', icon: <Server className="h-6 w-6" />, color: 'from-indigo-400 to-blue-500' },
+  ] },
+  { category: 'AI Enthusiast · Sedang Dieksplorasi', items: [
+    { name: 'Python', icon: <Code2 className="h-6 w-6" />, color: 'from-blue-400 to-cyan-500' },
+    { name: 'Analisis Data', icon: <Database className="h-6 w-6" />, color: 'from-purple-400 to-pink-500' },
+    { name: 'Prompt Engineering', icon: <Brain className="h-6 w-6" />, color: 'from-emerald-400 to-teal-500' },
+    { name: 'Integrasi AI', icon: <Bot className="h-6 w-6" />, color: 'from-indigo-400 to-blue-500' },
+  ] },
+  { category: 'Tools Pendukung', items: [
+    { name: 'Git & GitHub', icon: <GitBranch className="h-6 w-6" />, color: 'from-blue-400 to-cyan-500' },
+    { name: 'Command Line', icon: <Terminal className="h-6 w-6" />, color: 'from-purple-400 to-pink-500' },
+    { name: 'Web Development', icon: <Globe className="h-6 w-6" />, color: 'from-emerald-400 to-teal-500' },
+    { name: 'Otomasi Workflow', icon: <Workflow className="h-6 w-6" />, color: 'from-indigo-400 to-blue-500' },
+  ] },
 ];
 
 export default function Skills() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.reveal');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>();
 
   return (
     <section ref={sectionRef} className="py-20 bg-gray-50 dark:bg-gray-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 reveal">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Tech <span className="text-gradient">Stack</span>
+            Skills & <span className="text-gradient">Focus</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            Teknologi dan tools yang saya gunakan untuk membangun solusi digital
+            Fokus pembelajaran dan praktik untuk IT Specialist & AI Enthusiast
           </p>
         </div>
 
@@ -91,7 +62,7 @@ export default function Skills() {
                     {/* Gradient border on hover */}
                     <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]`} />
                     <div className="absolute inset-[1px] rounded-xl bg-white dark:bg-gray-900/90 -z-10" />
-                    
+
                     <div className={`inline-flex p-2.5 rounded-lg bg-gradient-to-r ${skill.color} bg-opacity-10 text-white mb-3`}>
                       {skill.icon}
                     </div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,14 +14,40 @@
       content="IT Specialist & AI Enthusiast. Explore my projects, skills, and writings."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ums-l200224246.github.io/" />
+    <meta property="og:url" content="https://0xapatelos.github.io/" />
+    <meta property="og:image" content="https://0xapatelos.github.io/images/profile.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raka Rendra Fayanto — Portfolio" />
+    <meta
+      name="twitter:description"
+      content="IT Specialist & AI Enthusiast. Explore my projects, skills, and writings."
+    />
+    <meta name="twitter:image" content="https://0xapatelos.github.io/images/profile.jpg" />
     <meta name="theme-color" content="#0f172a" />
+    <link rel="canonical" href="https://0xapatelos.github.io/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <!-- Apply the saved theme before first paint to avoid a light-flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark =
+            saved !== null
+              ? JSON.parse(saved) === true
+              : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

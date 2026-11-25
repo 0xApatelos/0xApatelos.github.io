@@ -1,0 +1,22 @@
+/** Tailwind background classes for GitHub language dots. */
+export const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: 'bg-blue-400',
+  JavaScript: 'bg-yellow-400',
+  Python: 'bg-green-400',
+  HTML: 'bg-orange-400',
+  CSS: 'bg-purple-400',
+  Java: 'bg-red-400',
+  'Jupyter Notebook': 'bg-orange-500',
+  Shell: 'bg-emerald-400',
+  PHP: 'bg-violet-400',
+  Go: 'bg-cyan-400',
+  Rust: 'bg-orange-600',
+  C: 'bg-gray-500',
+  'C++': 'bg-pink-500',
+  Ruby: 'bg-red-500',
+  Swift: 'bg-orange-500',
+  Kotlin: 'bg-purple-500',
+  Dart: 'bg-sky-400',
+  Vue: 'bg-emerald-500',
+  Svelte: 'bg-orange-400',
+};

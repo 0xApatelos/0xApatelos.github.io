@@ -1,32 +1,15 @@
-import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ChevronRight } from 'lucide-react';
 import { BlogPost } from '../types';
+import { formatDate } from '../data/posts';
+import { useReveal } from '../hooks/useReveal';
 
 interface LatestPostsProps {
   posts: BlogPost[];
 }
 
 export default function LatestPosts({ posts }: LatestPostsProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.reveal');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>();
 
   return (
     <section ref={sectionRef} className="py-20 bg-gray-50 dark:bg-gray-800/50">
@@ -56,12 +39,22 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
               className="group p-6 rounded-xl bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1"
             >
               <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
-                <span>{post.date}</span>
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
                 <span className="mx-2">•</span>
                 <div className="flex items-center">
                   <Clock className="h-3 w-3 mr-1" />
                   <span>{post.readTime}</span>
                 </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5 mb-3">
+                {post.tags.slice(0, 2).map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 text-xs rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                 {post.title}

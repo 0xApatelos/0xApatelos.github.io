@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home, ArrowLeft } from 'lucide-react';
+import { Home } from 'lucide-react';
 
 export default function NotFound() {
   return (

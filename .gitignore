@@ -1,74 +1,27 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.db
-*.sqlite3
-env/
-venv/
-venv3.11/
-*.env
-*.venv
-*.eggs
-*.egg-info
-dist/
-build/
-*.log
-*.pot
-*.pyc
-*.pyo
-.DS_Store
-.metaflow/
-# Jupyter Notebook
-.ipynb_checkpoints/
-# *.ipynb
-*.jpynb
-*.jupyterlab-workspaces
-*.jlpmrc
-*.ipynb_metadata
-*.ipynb-meta
-
-# React
+# Dependencies
 node_modules/
-build/
+
+# Build output
 dist/
-*.log
-*.env
+dist-ssr/
+build/
 *.tsbuildinfo
-*.eslintcache
-*.cache/
-*.idea/
-*.vscode/
-
-# Mac OS
-.DS_Store
-
-# Windows
-Thumbs.db
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor / OS
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.bolt/
+Thumbs.db
+
+# Local env / caches
+*.local
+*.env
+.eslintcache
+.cache/
+coverage/
