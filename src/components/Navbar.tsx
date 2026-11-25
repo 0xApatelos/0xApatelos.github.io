@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Moon, Sun, Github, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../contexts/themeContext';
+import { SITE } from '../config/site';
 
 const navItems = [
   { path: '/', label: 'Home' },
   { path: '/projects', label: 'Projects' },
   { path: '/blog', label: 'Blog' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/cv', label: 'CV' },
   { path: '/contact', label: 'Contact' },
 ];
 
@@ -17,7 +20,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,11 +35,11 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <NavLink to="/" className="flex items-center gap-2 text-gray-900 dark:text-white group">
+            <NavLink to="/" end className="flex items-center gap-2 text-gray-900 dark:text-white group">
               <div className="p-1.5 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-shadow duration-300">
                 <Github className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-sm hidden sm:inline">RRF</span>
+              <span className="font-bold text-sm hidden sm:inline">{SITE.shortName}</span>
             </NavLink>
           </div>
 
@@ -45,6 +49,7 @@ export default function Navbar() {
               <NavLink
                 key={path}
                 to={path}
+                end={path === '/'}
                 className={({ isActive }) =>
                   `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
@@ -63,7 +68,7 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-              aria-label="Toggle theme"
+              aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
@@ -73,6 +78,8 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="sm:hidden p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -82,12 +89,16 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="sm:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
+        <div
+          id="mobile-menu"
+          className="sm:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700"
+        >
           <div className="px-4 py-3 space-y-1">
             {navItems.map(({ path, label }) => (
               <NavLink
                 key={path}
                 to={path}
+                end={path === '/'}
                 onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) =>
                   `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${

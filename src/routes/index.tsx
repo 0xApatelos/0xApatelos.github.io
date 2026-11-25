@@ -5,6 +5,8 @@ import Projects from '../pages/Projects';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
+import Experience from '../pages/Experience';
+import CV from '../pages/CV';
 import NotFound from '../pages/NotFound';
 
 export const router = createHashRouter([
@@ -16,6 +18,8 @@ export const router = createHashRouter([
       { path: 'projects', element: <Projects /> },
       { path: 'blog', element: <Blog /> },
       { path: 'blog/:id', element: <BlogPost /> },
+      { path: 'experience', element: <Experience /> },
+      { path: 'cv', element: <CV /> },
       { path: 'contact', element: <Contact /> },
       { path: '*', element: <NotFound /> },
     ],

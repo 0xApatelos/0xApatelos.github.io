@@ -61,3 +61,40 @@
 .dark {
   color-scheme: dark;
 }
+
+/* Respect the OS reduced-motion setting: kill animations/transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The CV is the only printable route; browser Save as PDF needs no external service. */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, body, #root { background: white !important; color: black !important; color-scheme: light; }
+  nav, footer { display: none !important; }
+  .cv-page, .cv-page > div, .cv-document {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    background: white !important;
+    color: black !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .cv-document * { color: black !important; border-color: #ddd !important; }
+  .cv-document section { break-inside: avoid; }
+  .cv-document { font-size: 10pt; }
+  a { text-decoration: none; }
+}
