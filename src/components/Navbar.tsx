@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Github, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../contexts/themeContext';
 import { SITE } from '../config/site';
@@ -31,15 +31,13 @@ export default function Navbar() {
         ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm'
         : 'bg-transparent border-b border-transparent'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="site-container">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <NavLink to="/" end className="flex items-center gap-2 text-gray-900 dark:text-white group">
-              <div className="p-1.5 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-shadow duration-300">
-                <Github className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-bold text-sm hidden sm:inline">{SITE.shortName}</span>
+              <span className="font-semibold text-sm tracking-tight">{SITE.shortName}<span className="text-blue-700 dark:text-blue-400">.</span></span>
+              <span className="hidden lg:inline text-xs text-gray-500 dark:text-gray-400 ml-2">Portfolio</span>
             </NavLink>
           </div>
 
@@ -51,7 +49,7 @@ export default function Navbar() {
                 to={path}
                 end={path === '/'}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  `px-3 py-2 rounded text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'

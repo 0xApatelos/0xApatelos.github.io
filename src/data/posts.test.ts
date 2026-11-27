@@ -38,7 +38,8 @@ describe('blog data', () => {
     }
   });
 
-  it('formatDate produces a readable Indonesian date', () => {
-    expect(formatDate('2026-11-18')).toMatch(/2026/);
+  it('formatDate produces a readable English date', () => {
+    expect(formatDate('2026-11-18')).toBe('18 November 2026');
+    expect(formatDate('2025-02-05')).toBe('5 February 2025');
   });
 });

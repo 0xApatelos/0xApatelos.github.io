@@ -32,14 +32,14 @@ export default function Projects() {
             className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            Kembali ke Home
+            Back to home
           </Link>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
             My <span className="text-gradient">Projects</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl">
-            Semua repository publik dari GitHub saya.
+            Public GitHub repositories, excluding forks and hidden entries.
             {!loading && !error && repos.length > 0 && (
               <> Total {repos.length} repositories.</>
             )}
@@ -50,7 +50,7 @@ export default function Projects() {
         {loading && (
           <div className="flex flex-col items-center justify-center py-20" role="status">
             <div className="w-10 h-10 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
-            <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm">Memuat repositories...</p>
+            <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm">Loading repositories...</p>
           </div>
         )}
 
@@ -62,7 +62,7 @@ export default function Projects() {
               onClick={refetch}
               className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors text-sm"
             >
-              Coba Lagi
+              Try again
             </button>
           </div>
         )}
@@ -78,7 +78,7 @@ export default function Projects() {
 
             {repos.length === 0 && (
               <p className="text-center text-gray-500 dark:text-gray-400 py-10">
-                Belum ada repository publik.
+                No public repositories to display.
               </p>
             )}
 

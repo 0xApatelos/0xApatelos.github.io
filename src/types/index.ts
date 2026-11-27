@@ -28,7 +28,7 @@ export interface NavItem {
 export interface ExperienceItem {
   /** Unique key, e.g. 1, 2, 3... */
   id: number;
-  /** Date range shown on the left, e.g. 'Jan 2024 - Sekarang' */
+  /** Date range shown on the left, e.g. 'Jan 2024 - Present' */
   period: string;
   /** Job/role title, e.g. 'Web Developer Intern' */
   role: string;
@@ -48,13 +48,18 @@ export interface Certificate {
   name: string;
   /** Issuing organization, e.g. 'Dicoding Indonesia' */
   issuer: string;
-  /** Issue date shown on the card, e.g. 'Mei 2025' */
+  /** Issue date shown on the card, e.g. 'May 2025' */
   date: string;
   /**
    * Link to verify/download the certificate.
    * Leave as '' to render the card WITHOUT a link button.
    */
   url: string;
-  /** Short description: topics covered, skills proved, grade/score if any */
+  /** Short description of course content; avoid unsupported proficiency claims. */
   description: string;
+  /** Optional metadata transcribed from the issuer's verification page. */
+  instructor?: string;
+  credentialId?: string;
+  courseUrl?: string;
+  credentialType?: 'course-completion';
 }

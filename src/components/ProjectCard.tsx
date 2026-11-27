@@ -1,6 +1,7 @@
 import { ExternalLink, Star, GitFork } from 'lucide-react';
 import { Repository } from '../types';
 import { LANGUAGE_COLORS } from '../constants/languages';
+import { SELECTED_PROJECTS } from '../data/selectedProjects';
 
 interface ProjectCardProps {
   repo: Repository;
@@ -8,21 +9,19 @@ interface ProjectCardProps {
 }
 
 /**
- * Clickable GitHub repository card — used both on the Home "Featured Projects"
- * grid and the full Projects page.
+ * Clickable GitHub repository card on the full Projects page.
+ * Known projects use the curated English copy rather than remote About text.
  */
 export default function ProjectCard({ repo, showForks = false }: ProjectCardProps) {
+  const curated = SELECTED_PROJECTS.find(project => project.url.toLowerCase() === repo.html_url.toLowerCase());
   return (
     <a
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${repo.name} on GitHub`}
-      className="group relative block p-6 rounded-xl bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1"
+      className="group relative block p-6 rounded-md bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700/50 hover:border-blue-500/30 transition-colors duration-200"
     >
-      {/* Subtle gradient on hover */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
       <div className="relative">
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-all pr-2">
@@ -32,7 +31,7 @@ export default function ProjectCard({ repo, showForks = false }: ProjectCardProp
         </div>
 
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 min-h-[2.5rem]">
-          {repo.description || 'No description available'}
+          {curated?.summary || repo.description || 'No description provided. Open the repository to explore its source and documentation.'}
         </p>
 
         <div className="flex flex-wrap items-center gap-4 text-xs">

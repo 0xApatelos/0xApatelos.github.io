@@ -22,11 +22,7 @@ const TYPE_BADGES: Record<ExperienceItem['type'], { label: string; classes: stri
   },
 };
 
-/**
- * Halaman gabungan Experience & Certificates.
- * Data diambil dari src/data/experience.ts — lihat komentar di sana
- * untuk cara menambahkan pengalaman, link sertifikat, dan deskripsi.
- */
+/** Work experience and certificates, sourced from src/data/experience.ts. */
 export default function Experience() {
   const sectionRef = useReveal<HTMLElement>();
 
@@ -39,7 +35,7 @@ export default function Experience() {
             Experience & <span className="text-gradient">Certificates</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl">
-            Perjalanan karier, organisasi, dan sertifikasi yang menunjang perjalanan saya.
+            Work and community experience, alongside continued learning through courses.
           </p>
         </div>
 
@@ -102,28 +98,33 @@ export default function Experience() {
         </div>
 
         {/* ── Section 2: Certificates grid ───────────────────────── */}
-        <div>
-          <h2 className="flex items-center gap-2 text-2xl font-bold text-gray-900 dark:text-white mb-8 reveal">
-            <Award className="h-5 w-5 text-amber-500" />
+        <div id="certificates" className="scroll-mt-20">
+          <h2 className="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white mb-3 reveal">
+            <Award className="h-5 w-5 text-gray-500" aria-hidden="true" />
             Certificates
           </h2>
+          <p className="text-sm leading-7 text-gray-600 dark:text-gray-400 mb-8 reveal">
+            The Udemy credentials below are course-completion certificates, not professional certifications.
+            Descriptions summarize the syllabus; dates follow the issuer’s verification pages.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal">
-            {CERTIFICATES.map((cert, idx) => (
+            {CERTIFICATES.map(cert => (
               <article
                 key={cert.id}
-                className="group flex flex-col p-6 rounded-xl bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 hover:border-amber-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/5 hover:-translate-y-1"
-                style={{ transitionDelay: `${idx * 100}ms` }}
+                aria-labelledby={`certificate-${cert.id}`}
+                className="flex flex-col p-6 rounded-md bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="p-2.5 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 text-white flex-shrink-0">
-                    <Award className="h-5 w-5" />
+                  <div className="p-2 rounded border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 flex-shrink-0">
+                    <Award className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-semibold text-gray-900 dark:text-white leading-snug">
+                    <h3 id={`certificate-${cert.id}`} className="font-semibold text-gray-900 dark:text-white leading-snug">
                       {cert.name}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{cert.issuer}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{cert.issuer}</p>
+                    {cert.instructor && <p className="text-xs leading-5 text-gray-500 dark:text-gray-400 mt-1">Instructor: {cert.instructor}</p>}
                   </div>
                 </div>
 
@@ -131,30 +132,35 @@ export default function Experience() {
                   <Calendar className="h-3.5 w-3.5" />
                   <span>{cert.date}</span>
                 </div>
+                {cert.credentialType === 'course-completion' && <p className="section-label mb-3">Course completion</p>}
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-7 flex-grow">
                   {cert.description}
                 </p>
 
-                {/* url: '' → no button. url set → "Lihat Sertifikat" opens in new tab. */}
-                {cert.url && (
-                  <a
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 transition-all duration-300 self-start"
-                  >
-                    Lihat Sertifikat
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                )}
+                {cert.credentialId && <p className="mt-4 text-xs leading-5 text-gray-500 dark:text-gray-400 break-all"><span className="font-medium">ID: </span>{cert.credentialId}</p>}
+                <div className="mt-5 flex flex-wrap items-center gap-4">
+                  {cert.url && (
+                    <a
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Verify certificate ${cert.name}`}
+                      className="text-link"
+                    >
+                      View certificate
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    </a>
+                  )}
+                  {cert.courseUrl && <a href={cert.courseUrl} target="_blank" rel="noopener noreferrer" aria-label={`Course syllabus ${cert.name}`} className="quiet-link text-sm text-gray-500 dark:text-gray-400">Course syllabus ↗</a>}
+                </div>
               </article>
             ))}
           </div>
 
           {CERTIFICATES.length === 0 && (
             <p className="text-center text-gray-500 dark:text-gray-400 py-10 reveal">
-              Sertifikat akan segera ditambahkan.
+              No certificates have been added yet.
             </p>
           )}
         </div>

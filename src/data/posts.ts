@@ -1,309 +1,270 @@
 import { BlogPost } from '../types';
 
-/**
- * Blog content. Written in Markdown (see src/utils/Markdown.tsx for the
- * supported syntax: ## headings, **bold**, `code`, lists, quotes, code fences).
- *
- * To add a post: append an object here with a unique `id`, an ISO `date`,
- * and it will automatically appear on the Blog page, the Home "Latest Posts"
- * section, and get its own route at #/blog/<id>.
- */
+/** English editions of the existing articles. IDs, publication dates, and tags stay stable. */
 export const POSTS: BlogPost[] = [
   {
     id: 1,
-    title: 'Perjalanan Saya di Dunia AI & Prompt Engineering',
-    description:
-      'Bagaimana saya mulai tertarik dengan AI dan bagaimana prompt engineering mengubah cara saya belajar dan bekerja.',
-    date: '2026-11-18',
-    readTime: '5 min read',
-    tags: ['AI', 'Prompt Engineering'],
-    content: `Awal mula perkenalan saya dengan AI dimulai saat semester 3, ketika pertama kali mencoba ChatGPT. Dari situ, saya menyadari bahwa kemampuan berkomunikasi dengan AI — yang dikenal sebagai Prompt Engineering — adalah skill yang sangat powerful.
+    title: "My Introduction to AI & Prompt Engineering",
+    description: "How I became interested in AI, and how clearer prompts changed the way I learn and work.",
+    date: "2026-11-18",
+    readTime: "5 min read",
+    tags: ["AI", "Prompt Engineering"],
+    content: `My introduction to AI began in my third semester, when I first tried ChatGPT. It made me realize how much the quality of an answer depends on how clearly I explain the problem.
 
-## Apa itu Prompt Engineering?
+## What is prompt engineering?
 
-Prompt Engineering adalah seni merancang instruksi agar model AI menghasilkan output yang kita inginkan. Bukan sekadar "tanya jawab", tapi memberi konteks, batasan, dan format yang jelas.
+Prompt engineering means designing instructions that give an AI model enough context, constraints, and a useful output format. It is more than asking a question and accepting the first response.
 
-Beberapa prinsip yang paling saya pakai:
+The principles I return to most often are:
 
-- **Berikan konteks** — jelaskan latar belakang dan tujuan sebelum bertanya.
-- **Minta format spesifik** — "jawab dalam tabel", "ringkas dalam 3 poin".
-- **Contohkan** — teknik few-shot sering kali lebih efektif daripada penjelasan panjang.
-- **Iterasi** — prompt pertama jarang sempurna; perbaiki berdasarkan output.
+- **Provide context** — explain the background and goal.
+- **Specify the format** — ask for a comparison, a short list, or a structured explanation.
+- **Include an example** — a concrete example can communicate expectations better than a long instruction.
+- **Iterate** — review the output and refine the request.
 
-## Eksperimen dengan berbagai model
+## Comparing models
 
-Saya mulai bereksperimen dengan berbagai AI model, mulai dari GPT, Gemini, hingga Claude. Setiap model punya keunikan tersendiri dalam memahami konteks dan menghasilkan output.
+I started experimenting with GPT, Gemini, and Claude. Different models interpret the same context differently, so comparing responses helps me choose an approach rather than assume one tool is always best.
 
-> Tips: bandingkan output yang sama di beberapa model sebelum memutuskan workflow. Perbedaannya sering kali mengejutkan.
+> Compare responses to the same task, then check the claims against documentation or an actual test.
 
-## AI sebagai partner coding
+## AI as a coding partner
 
-Yang paling menarik adalah ketika saya mulai menggunakan AI untuk membantu proses development. Dari menulis boilerplate code, debugging, hingga brainstorming arsitektur sistem — AI menjadi partner coding yang sangat membantu.
+AI can help with boilerplate, debugging ideas, and discussing architecture. I still need to understand and review the changes.
 
 \`\`\`text
-Workflow saya:
-1. Jelaskan masalah + konteks proyek ke AI
-2. Minta 2–3 pendekatan solusi
-3. Pilih paling masuk akal, implementasi sendiri
-4. Minta review + penjelasan trade-off
+My workflow:
+1. Describe the problem and project context.
+2. Ask for two or three approaches.
+3. Choose an approach and implement it.
+4. Review the changes and explain the trade-offs.
 \`\`\`
 
-Ke depannya, saya berencana untuk lebih mendalami bidang AI, khususnya dalam penerapan machine learning untuk solusi real-world problems.`,
+I want to keep exploring applied AI, especially where it can support practical work without hiding the reasoning or verification.`,
   },
   {
     id: 2,
-    title: 'Membangun Portfolio Website dengan React & TypeScript',
-    description:
-      'Panduan lengkap membuat website portfolio modern menggunakan React, TypeScript, Vite, dan TailwindCSS.',
-    date: '2026-10-02',
-    readTime: '8 min read',
-    tags: ['Web', 'React', 'Tutorial'],
-    content: `Portfolio website adalah salah satu aset paling penting bagi seorang developer. Ini adalah tempat di mana kamu bisa menunjukkan skill, project, dan personality kamu kepada dunia.
+    title: "Building a Portfolio with React & TypeScript",
+    description: "A practical introduction to this portfolio’s React, TypeScript, Vite, and Tailwind CSS stack.",
+    date: "2026-10-02",
+    readTime: "8 min read",
+    tags: ["Web", "React", "Tutorial"],
+    content: `A portfolio gives a developer a place to explain their projects, decisions, and interests. It should make the work easy to inspect, not just display a list of technologies.
 
-## Stack yang saya gunakan
+## The stack I use
 
-- **React 18 dengan TypeScript** untuk type safety
-- **Vite sebagai build tool** yang super cepat
-- **TailwindCSS untuk styling** yang konsisten
-- **React Router untuk navigasi** SPA
-- **GitHub Pages untuk hosting** gratis
+- **React 18 and TypeScript** for components and type checking.
+- **Vite** for the development server and production build.
+- **Tailwind CSS** for consistent styling.
+- **React Router** for client-side navigation.
+- **GitHub Pages** for static hosting.
 
-## Kenapa Vite, bukan Create React App?
+## Why Vite?
 
-Create React App sudah tidak lagi direkomendasikan untuk proyek baru. Vite jauh lebih cepat karena:
-
-1. Dev server start dalam hitungan milidetik (esbuild, bukan webpack)
-2. Hot Module Replacement yang benar-benar instan
-3. Build produksi yang ringan dan out-of-the-box
+Create React App is no longer the recommended starting point for new projects. Vite provides a fast development loop, hot module replacement, and a straightforward production build.
 
 \`\`\`bash
 npm create vite@latest my-portfolio -- --template react-ts
-cd my-portfolio && npm install && npm run dev
+cd my-portfolio
+npm install
+npm run dev
 \`\`\`
 
-## Tips membuat portfolio yang standout
+## What makes a useful portfolio?
 
-- **Gunakan dark mode** — menunjukkan perhatian terhadap UX
-- **Tampilkan project nyata**, bukan template
-- **Tulis bio yang authentic** dan personal
-- **Pastikan responsive** di semua device
-- **Tambahkan animasi subtle** untuk kesan premium — tapi jangan berlebihan
+- Show real projects and explain your contribution.
+- Write a specific, honest introduction.
+- Make the layout usable on smaller screens.
+- Provide clear links to source code, documentation, and a CV.
+- Use motion sparingly and respect reduced-motion preferences.
 
-## Satu hal yang sering dilewatkan
+A dark theme can be useful, but it is not a substitute for readable contrast, clear navigation, or good content.
 
-SEO dan performa. Setiap halaman harus punya \`document.title\`, meta description, dan gambar yang dioptimalkan. Portfolio yang bagus percuma kalau tidak ada yang menemukannya di Google.
+## Performance and discoverability
 
-Portofolio ini sendiri dibangun dengan prinsip-prinsip di atas — source code-nya terbuka di GitHub kalau ingin referensi.`,
+Page titles, descriptions, and optimized images deserve attention too. A client-rendered application also has indexing and social-preview limitations that static meta tags alone do not solve.
+
+This portfolio is an opportunity to practice those decisions. Its source is public, including the setup instructions and quality-check commands.`,
   },
   {
     id: 3,
-    title: 'Data Science dengan Python untuk Pemula',
-    description:
-      'Pengalaman saya belajar data science menggunakan Python, pandas, dan scikit-learn untuk analisis clustering.',
-    date: '2026-08-14',
-    readTime: '6 min read',
-    tags: ['Data Science', 'Python'],
-    content: `Salah satu mata kuliah yang paling berkesan bagi saya adalah IPSD (Pengantar Sains Data), di mana saya belajar mengolah data dengan Python.
+    title: "Getting Started with Data Science in Python",
+    description: "Notes from learning Python, pandas, and scikit-learn through exploratory clustering work.",
+    date: "2026-08-14",
+    readTime: "6 min read",
+    tags: ["Data Science", "Python"],
+    content: `One of the courses that stayed with me was Introduction to Data Science, where I worked with Python to explore and process data.
 
-## Tools utama yang saya gunakan
+## The main tools
 
-- **Python** sebagai bahasa utama
-- **Pandas** untuk manipulasi data
-- **Scikit-learn** untuk algoritma machine learning
-- **Matplotlib** untuk visualisasi
+- **Python** as the programming language.
+- **pandas** for data manipulation.
+- **scikit-learn** for machine learning algorithms.
+- **Matplotlib** for visualization.
 
-## Alur kerja data science
+## A repeatable workflow
 
-Pengalaman saya, alur kerja yang benar selalu konsisten:
+1. **Collect** data from a file, API, or database.
+2. **Clean** missing values, duplicates, and inconsistent entries.
+3. **Explore** the data with descriptive statistics and plots.
+4. **Model** using a method appropriate to the question.
+5. **Communicate** the findings and their limitations.
 
-1. **Collect** — kumpulkan data dari CSV, API, atau database
-2. **Clean** — tangani missing value, duplikat, dan outlier
-3. **Explore** — statistik deskriptif + visualisasi
-4. **Model** — pilih algoritma yang sesuai masalah
-5. **Communicate** — sampaikan insight, bukan sekadar angka
+## K-Means clustering
 
-## Proyek K-Means Clustering
-
-Project yang paling menarik adalah implementasi K-Means Clustering untuk mengelompokkan data.
+Clustering was an interesting way to explore structure without predefined labels.
 
 \`\`\`python
 from sklearn.cluster import KMeans
 
+# scaled_data must be prepared before fitting.
 kmeans = KMeans(n_clusters=3, random_state=42)
 clusters = kmeans.fit_predict(scaled_data)
 \`\`\`
 
-Yang paling saya pelajari: **menentukan jumlah K itu bukan tebakan**. Metode Elbow dan Silhouette Score membantu membuat keputusan berbasis bukti, bukan feeling.
+Choosing the number of clusters should not be an arbitrary decision. The elbow method and silhouette score can inform the choice, but domain interpretation still matters.
 
-## Pelajaran terpenting
+## The main lesson
 
-Data cleaning memakan 80% waktu, tapi itu adalah fondasi dari analisis yang akurat. Model canggih dengan data kotor akan menghasilkan sampah bermutu tinggi — tetap sampah.
+Data preparation can take a substantial part of a project. A more sophisticated model does not compensate for unclear definitions or inconsistent input.
 
-> "Better data beats fancy algorithms." — principle yang berlaku di hampir setiap proyek data.`,
+> Better data and a clear question often matter more than a complicated algorithm.
+
+An exploratory clustering result is not automatically a validated classification system. That distinction is important when explaining a learning project.`,
   },
   {
     id: 4,
-    title: 'Dasar Git yang Wajib Dikuasai Mahasiswa Informatika',
-    description:
-      'Branch, merge, rebase, dan pull request — alur kerja Git yang saya pakai setiap hari di proyek kuliah dan pribadi.',
-    date: '2026-06-20',
-    readTime: '7 min read',
-    tags: ['Git', 'Developer Tools'],
-    content: `Git adalah alat yang paling sering dipakai tapi paling jarang dipelajari dengan benar oleh mahasiswa. Banyak yang cuma hafal \`git add\` dan \`git commit\` tanpa paham apa yang sebenarnya terjadi.
+    title: "Git Fundamentals for Informatics Students",
+    description: "Branches, merges, rebases, and pull requests: a workflow for coursework and personal projects.",
+    date: "2026-06-20",
+    readTime: "7 min read",
+    tags: ["Git", "Developer Tools"],
+    content: `It is easy to memorize git add and git commit without understanding what they do. A useful starting point is the relationship between the working directory, staging area, and repository history.
 
-## Mental model yang benar
-
-Git punya tiga area: **working directory**, **staging area**, dan **repository**.
+## The three areas
 
 \`\`\`bash
-git status      # lihat apa yang berubah
-git add .       # pindahkan ke staging
-git commit -m "pesan"   # simpan ke riwayat
+git status                    # inspect changes
+git add .                     # stage changes after reviewing them
+git commit -m "Describe change" # save a snapshot
 \`\`\`
 
-Kalau kamu paham tiga area ini, 80% perintah Git jadi masuk akal.
+The staging area lets me choose what belongs in a commit rather than save every unrelated change together.
 
-## Branch: bukan untuk hal besar saja
+## Small branches help
 
-Saya dulu berpikir branch hanya untuk fitur besar. Ternyata, branch kecil justru lebih baik:
+A branch does not need to contain a large feature. It can hold a documentation fix, pagination change, or focused refactor.
 
-- Perbaikan typo → \`fix/typo-readme\`
-- Tambah fitur → \`feat/pagination\`
-- Refactor → \`refactor/hooks\`
+- A small scope is easier to review.
+- Unsuccessful work is easier to set aside.
+- The reason for a change is easier to explain.
 
-Branch yang kecil mudah di-review, mudah di-drop kalau gagal, dan jarang konflik.
+## Merge and rebase
 
-## Merge vs Rebase
+**Merge** preserves the existing branch history. **Rebase** replays commits onto another base, producing a more linear history but rewriting commit identities.
 
-- **Merge** menjaga sejarah asli, cocok untuk branch shared
-- **Rebase** membuat sejarah linear, cocok untuk branch pribadi sebelum di-push
+My practical rule is to avoid rebasing shared history without coordinating with the people using it.
 
-Aturan praktis saya: *rebase local branch sendiri, jangan pernah rebase branch yang sudah dibagikan orang lain.*
+## Pull requests that are easier to review
 
-## Pull request yang enak direview
+1. Keep commits focused and clearly named.
+2. Explain **why** the change is needed, not just what changed.
+3. Include tests or manual verification steps.
+4. Avoid combining unrelated refactoring and features.
 
-1. Commit kecil dengan pesan yang jelas
-2. Deskripsi PR menjelaskan **kenapa**, bukan cuma **apa**
-3. Sertakan cara test/manual QA
-4. Jangan campur refactor + fitur baru dalam satu PR
-
-Workflow ini saya pakai di proyek kuliah dan open source, dan feedback dari reviewer jauh lebih positif setelah saya menerapkannya.`,
+A good Git workflow is a communication tool as much as a way to preserve code.`,
   },
   {
     id: 5,
-    title: 'Mengenal REST API: Konsep yang Sering Salah Paham',
-    description:
-      'Apa itu REST, kenapa method HTTP penting, dan bagaimana saya membangun API sederhana yang rapi.',
-    date: '2026-04-11',
-    readTime: '6 min read',
-    tags: ['Backend', 'API'],
-    content: `Hampir setiap proyek web saya akhirnya butuh API. Tapi istilah "REST" sering dipakai tanpa benar-benar dipahami. Mari kita uraikan.
+    title: "Understanding REST APIs and HTTP Semantics",
+    description: "Resource-oriented endpoints, HTTP methods, idempotency, and useful error responses.",
+    date: "2026-04-11",
+    readTime: "6 min read",
+    tags: ["Backend", "API"],
+    content: `Most web projects eventually need to exchange data through an API. The term REST is common, but naming an endpoint does not by itself make an API RESTful.
 
-## REST itu bukan framework
+## REST is not a framework
 
-REST (Representational State Transfer) adalah **konvensi desain**, bukan library. Endpoint REST yang baik itu:
+REST is an architectural style. Resource-oriented URLs, stateless requests, and meaningful HTTP behavior are useful starting points.
 
-- Menggunakan noun, bukan verb: \`/articles\`, bukan \`/getArticles\`
-- Stateless — setiap request mengandung info yang cukup
-- Menggunakan method HTTP sesuai makna
+- Prefer resource names such as /articles over action names such as /getArticles.
+- Include the information needed to process each request.
+- Choose methods according to their semantics.
 
-## Method HTTP dan maknanya
+## Methods and idempotency
 
-| Method  | Arti            | Idempoten? |
-|---------|-----------------|------------|
-| GET     | Baca data       | Ya         |
-| POST    | Buat baru       | Tidak      |
-| PUT     | Ganti total     | Ya         |
-| PATCH   | Ganti sebagian  | Tidak      |
-| DELETE  | Hapus           | Ya         |
+- **GET** reads a representation and should not change server state.
+- **POST** commonly creates a resource or submits an operation; it is not inherently idempotent.
+- **PUT** replaces the state at a target and is idempotent.
+- **PATCH** makes a partial change; whether it is idempotent depends on the operation.
+- **DELETE** is idempotent in its intended state change, even if repeated response codes differ.
 
-Idempoten artinya: request yang diulang menghasilkan efek yang sama. Ini penting untuk retry logic.
-
-## Contoh endpoint yang baik
+Idempotency matters when a client retries after a timeout.
 
 \`\`\`text
-GET    /api/articles         → daftar artikel
-GET    /api/articles/42      → satu artikel
-POST   /api/articles         → buat artikel
-DELETE /api/articles/42      → hapus artikel
+GET    /api/articles       -> list articles
+GET    /api/articles/42    -> retrieve one article
+POST   /api/articles       -> create an article
+DELETE /api/articles/42    -> delete an article
 \`\`\`
 
-## Error handling yang manusiawi
+## Useful error responses
 
-Jangan pernah balas semua error dengan \`500 Internal Server Error\`. Bedakan:
+Do not turn every failure into a 500 response. Distinguish invalid input, missing authentication, insufficient permission, missing resources, and rate limits.
 
-- **400** — request salah (validasi gagal)
-- **401** — belum login
-- **403** — sudah login tapi tidak boleh
-- **404** — data tidak ada
-- **429** — terlalu banyak request (rate limit)
-
-Saya belajar ini saat membangun integrasi GitHub API di portfolio ini — GitHub sendiri sangat disiplin memakai status code, dan klien jadi jauh lebih mudah ditulis kalau server-nya disiplin.`,
+Working with the GitHub API in this portfolio is a practical reminder: a client can respond more clearly when the server provides meaningful status codes.`,
   },
   {
     id: 6,
-    title: 'Belajar Konsisten di Sela Kesibukan Kuliah',
-    description:
-      'Sistem belajar yang akhirnya berhasil untuk saya: ritme kecil, proyek nyata, dan jangan mengejar semua tren.',
-    date: '2026-02-27',
-    readTime: '5 min read',
-    tags: ['Career', 'Learning'],
-    content: `Setiap awal tahun saya membuat resolusi: "tahun ini saya akan menguasai X, Y, dan Z." Setiap pertengahan tahun, resolusi itu mati diam-diam. Akhirnya saya mengubah caranya.
+    title: "Building a Consistent Learning Routine",
+    description: "Small practice sessions, concrete projects, and choosing a focus instead of chasing every trend.",
+    date: "2026-02-27",
+    readTime: "5 min read",
+    tags: ["Career", "Learning"],
+    content: `I used to set large learning goals at the beginning of a year, only to lose momentum later. A smaller routine turned out to be easier to sustain.
 
-## Masalahnya bukan motivasi, tapi sistem
+## A system matters more than motivation
 
-Motivasi itu naik-turun. Yang bertahan adalah sistem:
+Motivation changes from day to day. A routine provides a place to return to.
 
-- **Ritme kecil setiap hari** — 30 menit konsisten mengalahkan 8 jam di akhir pekan
-- **Proyek nyata sebagai guru** — tutorial selesai dalam sehari, proyek mengajari selamanya
-- **Satu fokus per waktu** — ganti-ganti teknologi tiap bulan berarti tidak mahir di mana pun
+- **Practice in small sessions.** A manageable daily habit is easier to maintain than an occasional marathon.
+- **Learn through a project.** A real task exposes gaps that a tutorial can hide.
+- **Choose one focus at a time.** Switching tools constantly makes it hard to develop depth.
 
-## Teknik yang paling membantu saya
+## Build something useful
 
-### 1. Belajar dengan cara produksi
+Instead of only watching lessons, I try to apply them to a small need. A portfolio page or a simple automation script gives the learning a concrete goal.
 
-Alih-alih hanya menonton tutorial, saya langsung membangun sesuatu yang (sedikit) berguna. Portfolio ini, bot Telegram kecil, scraper sederhana — semuanya lahir dari kebutuhan nyata.
+## Write notes in my own words
 
-### 2. Menulis catatan sendiri
+If I cannot explain a concept clearly, I probably need to revisit it. Writing is a way to discover the parts I only thought I understood.
 
-Kalau saya tidak bisa menjelaskan konsep dengan kata-kata saya sendiri, berarti saya belum mengerti. Ini alasan saya menulis blog ini.
+## Accept getting stuck
 
-### 3. Menerima fase "stuck"
+Learning a new tool includes a period of confusion. Breaking the task into smaller questions helps more than switching to another course immediately.
 
-Setiap kali belajar hal baru, ada fase di mana merasa bodoh. Fase itu normal. Yang membedakan orang yang berhasil adalah yang tetap duduk saat fase itu datang.
+> Does this technology solve a problem I am currently facing?
 
-## Jangan kejar semua tren
-
-Daftar teknologi itu panjang, waktu kita terbatas. Saya filter dengan satu pertanyaan:
-
-> "Apakah ini menyelesaikan masalah yang sedang saya hadapi?"
-
-Kalau tidak, simpan dulu. Tren boleh dipelajari nanti — dan sering kali konsep dasarnya tetap relevan selama bertahun-tahun.`,
+That question helps me decide what to study now and what to save for later. A trend can wait; understanding the underlying concept will usually remain useful.`,
   },
   {
     id: 7,
-    title: 'Docker untuk Pemula: Dari "Works on My Machine" ke Reproducible',
-    description:
-      'Apa itu container, kenapa Docker menyelesaikan masalah lingkungan dev, dan perintah yang benar-benar saya pakai sehari-hari.',
-    date: '2025-12-08',
-    readTime: '7 min read',
-    tags: ['DevOps', 'Docker'],
-    content: `"Works on my machine" — kalimat yang pernah menghantui setiap developer. Docker lahir dari masalah itu.
+    title: "Docker for Beginners: Towards Reproducible Environments",
+    description: "Containers, images, and the commands that make development environments easier to reproduce.",
+    date: "2025-12-08",
+    readTime: "7 min read",
+    tags: ["DevOps", "Docker"],
+    content: `“It works on my machine” usually means important parts of the environment have not been documented or reproduced. Containers can help make those dependencies explicit.
 
-## Container vs Virtual Machine
+## Containers and virtual machines
 
-Virtual machine memuat seluruh OS — berat dan lambat. Container berbagi OS host tapi mengisolasi aplikasi:
+A virtual machine runs a guest operating system. Containers isolate application processes while sharing a kernel with their host environment. Neither is automatically the right answer for every workload.
 
-- **VM**: boot menit, GB-an RAM
-- **Container**: boot detik, MB-an RAM
+## Three core concepts
 
-Untuk dev loop harian, perbedaannya terasa sekali.
-
-## Tiga konsep inti
-
-1. **Image** — blueprint read-only (seperti class)
-2. **Container** — instance dari image (seperti object)
-3. **Dockerfile** — resep untuk membangun image
+1. An **image** packages a filesystem and configuration.
+2. A **container** is a running instance of an image.
+3. A **Dockerfile** describes how to build an image.
 
 \`\`\`dockerfile
 FROM node:20-alpine
@@ -312,177 +273,152 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 EXPOSE 5173
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 \`\`\`
 
-## Perintah yang benar-benar saya pakai
+This is a development example, not a production deployment recipe. Exclude node_modules and secrets with a .dockerignore file.
+
+## Useful commands
 
 \`\`\`bash
-docker build -t my-app .        # build image
-docker run -p 5173:5173 my-app  # jalankan
-docker ps                       # container aktif
-docker logs -f <container>      # pantau log
-docker compose up -d            # jalankan banyak service
+docker build -t my-app .
+docker run --rm -p 127.0.0.1:5173:5173 my-app
+docker ps
+docker logs -f <container>
+docker compose up -d
 \`\`\`
 
-## Docker Compose: saat ada database
+## Multiple services
 
-Proyek butuh PostgreSQL + Redis + app? Tiga terminal dan doa, atau satu file \`compose.yaml\`:
+Docker Compose can describe an application and its database together. Keep credentials out of committed configuration and make persistent storage and teardown behavior explicit.
 
-\`\`\`yaml
-services:
-  app:
-    build: .
-    ports: ["5173:5173"]
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: dev
-\`\`\`
+## When Docker is unnecessary
 
-\`docker compose up\` dan semuanya hidup bersama, dengan konfigurasi yang bisa di-commit ke Git.
-
-## Kapan TIDAK perlu Docker?
-
-Jujur: untuk script Python kecil atau proyek kuliah tanpa dependensi rumit, Docker bisa jadi over-engineering. Tapi begitu ada "di mesin saya jalan, di mesin kamu tidak", Docker menjadi solusi paling rapi.`,
+A short script with simple dependencies may not need containers. Start with the simplest environment that another person can reproduce, then add tooling when it solves a specific problem.`,
   },
   {
     id: 8,
-    title: 'Membaca Lowongan Developer: Sinyal vs Noise',
-    description:
-      'Cara saya menyaring lowongan kerja developer, apa yang benar-benar penting di job description, dan cara menyiapkan diri.',
-    date: '2025-10-19',
-    readTime: '6 min read',
-    tags: ['Career', 'Tips'],
-    content: `Saya pernah melamar ke 30+ lowongan dengan CV yang sama dan hampir tidak ada balasan. Setelah saya ubah cara membaca lowongan dan menyiapkan diri, responnya berubah drastis.
+    title: "Reading Developer Job Listings: Signal and Noise",
+    description: "How to distinguish essential requirements from optional tools and turn a job description into a learning plan.",
+    date: "2025-10-19",
+    readTime: "6 min read",
+    tags: ["Career", "Tips"],
+    content: `A long list of technologies can make a job listing look intimidating. I find it more useful to identify the problem the team needs someone to solve.
 
-## Job description adalah kontrak, bukan iklan
+## Read beyond the tool list
 
-Baca JD seperti ini:
+- Repeated **must-have** requirements usually indicate core responsibilities.
+- **Nice-to-have** items are useful context, not necessarily a reason to rule myself out.
+- A long stack list may describe a team’s environment rather than the daily work of one person.
 
-- **"Must have"** yang disebut 3 kali → kemampuan inti, pelajari serius
-- **"Nice to have"** → bonus, jangan panik kalau belum bisa
-- **Daftar teknologi panjang** → biasanya satu orang menyaring, bukan harus mahir semua
+## Signals worth checking
 
-## Sinyal yang benar-benar penting
+1. **How the team explains its problems.** Specific responsibilities are more useful than a page of buzzwords.
+2. **The interview process.** Clear stages and expectations help both sides prepare.
+3. **Compensation and work arrangements.** Transparency makes it easier to assess whether a role is a fit.
 
-Dari banyaknya lowongan, ini yang saya jadikan filter:
+## Let the portfolio provide evidence
 
-1. **Cara tim menjelaskan masalah** — lowongan yang fokus pada masalah bisnis biasanya lebih sehat daripada yang cuma menumpuk istilah teknis
-2. **Proses interview yang jelas** — tiga tahap wajar; sepuluh tahap tanpa kejelasan, pertimbangkan ulang
-3. **Gaji disebut** — transparansi di awan menghemat waktu semua pihak
+A relevant project is easier to discuss when it has:
 
-## Menyiapkan diri: portofolio berbicara
+- A working demo or reproducible setup instructions.
+- A clearly stated problem and scope.
+- Readable code and documented error handling.
+- An explanation of personal contribution and remaining limitations.
 
-Yang paling mengubah nasib saya bukan sertifikat, tapi proyek yang bisa didemokan:
+> An interviewer does not need proof that I know everything. They need evidence of how I learn and approach a problem.
 
-- **Bisa dijalankan** — link live atau README dengan langkah jelas
-- **Ada masalah nyata** — bukan cuma CRUD tutorial
-- **Code rapi** — error handling, naming, dan struktur folder yang masuk akal
+## One useful next step
 
-> Intervier tidak butuh kamu tahu segalanya. Mereka butuh bukti bahwa kamu bisa belajar dan menyelesaikan masalah.
-
-## Satu langkah konkret minggu ini
-
-Pilih satu lowongan yang menarik, cocokkan JD dengan kemampuanmu, dan tulis 3 hal yang bisa kamu pelajari untuk menutup gap terbesar. Bukan untuk panik — untuk punya arah.`,
+Choose a listing, compare its main responsibilities with the work in the portfolio, and identify three gaps to work on. The goal is direction, not a checklist of every technology mentioned.`,
   },
   {
     id: 9,
-    title: 'Algoritma yang Paling Sering Saya Pakai di Proyek Nyata',
-    description:
-      'Bukan untuk interview — struktur data dan algoritma yang benar-benar muncul di pekerjaan sehari-hari.',
-    date: '2025-08-05',
-    readTime: '6 min read',
-    tags: ['Computer Science', 'Tips'],
-    content: `Waktu kuliah, saya sempat berpikir analisis algoritma hanya untuk interview. Ternyata konsep-konsep ini muncul hampir tiap minggu di proyek nyata — dalam bentuk yang lebih sederhana.
+    title: "Practical Algorithms and Data Structures in Small Projects",
+    description: "Lookup tables, debouncing, binary search, and tree traversal beyond interview exercises.",
+    date: "2025-08-05",
+    readTime: "6 min read",
+    tags: ["Computer Science", "Tips"],
+    content: `Algorithm analysis can feel separate from everyday application development. In practice, familiar patterns appear in simple features such as search, navigation, and data lookup.
 
-## Yang benar-benar sering muncul
+## Hash maps for repeated lookups
 
-### 1. Hash map (object/dict) untuk lookup
-
-Butuh cek apakah ID ada di list 10.000 item? Jangan \`find()\` setiap kali — konversi ke map sekali, lookup jadi O(1).
+If I repeatedly need an item by ID, indexing once can be clearer and more efficient than scanning the full list on every request.
 
 \`\`\`javascript
-const byId = new Map(items.map(i => [i.id, i]));
+const byId = new Map(items.map(item => [item.id, item]));
 const target = byId.get(42);
 \`\`\`
 
-### 2. Debounce untuk input pencarian
+Hash-map lookups are typically constant time on average, with a memory trade-off.
 
-Setiap ketikan memicu API call = server kewalahan. Debounce 300ms menunggu jeda ketik sebelum request dikirim.
+## Debouncing search input
 
-### 3. Binary search — tapi bentuk lain
+A small delay after the last keystroke can prevent unnecessary requests. The right delay depends on the interaction; it is not a universal performance fix.
 
-Bukan cuma di array terurut. "Cari titik terdekat", "cari harga termurah", "cari page terakhir yang valid" — pola divide-and-conquer muncul terus, misalnya saat menentukan pagination di GitHub API.
+## Binary search
 
-### 4. BFS/DFS untuk hierarki
+Binary search is useful when the data or predicate has the required ordering. Without that assumption, dividing the search space does not guarantee a correct result.
 
-Navigasi folder, render tree komponen React, cari jalur di graph — semuanya DFS dengan rekursi yang tenang.
+## Traversing hierarchies
 
-## Yang jarang muncul
+Folders, navigation trees, and nested data often lead to depth-first or breadth-first traversal. A recursive implementation also needs sensible limits for very deep input.
 
-Jujur: red-black tree dan dynamic programming klasik belum pernah saya pakai di proyek nyata. Tidak berarti tidak perlu dipelajari — tapi kalau waktu terbatas, prioritas pada yang di atas dulu.
+## Choose according to the problem
 
-## Kesimpulan
+Not every project needs a specialized tree or dynamic-programming solution. Understanding the access pattern and data size should come first.
 
-> Algoritma bukan hafalan untuk interview; itu bahasa untuk berpikir tentang efisiensi.
+> Algorithms are a way to reason about efficiency, not just material to memorize for interviews.
 
-Kalau kamu bisa melihat "ini bakal lambat kalau datanya besar" sebelum masalah terjadi, kamu sudah selangkah di depan kebanyakan developer junior.`,
+Recognizing a repeated linear scan or an unnecessary request is already a useful application of that reasoning.`,
   },
   {
     id: 10,
-    title: 'Catatan Akhir Semester: Refleksi Belajar & Rencana ke Depan',
-    description:
-      'Apa yang berhasil, apa yang gagal, dan tiga fokus saya semester depan.',
-    date: '2025-06-15',
-    readTime: '4 min read',
-    tags: ['Career', 'Learning'],
-    content: `Setiap akhir semester saya menyediakan satu malam untuk menulis refleksi. Bukan curhat — tapi audit jujur supaya kesalahan yang sama tidak terulang.
+    title: "End-of-Semester Notes: Learning and Next Steps",
+    description: "A reflection on learning habits, unfinished work, and choosing a smaller set of priorities.",
+    date: "2025-06-15",
+    readTime: "4 min read",
+    tags: ["Career", "Learning"],
+    content: `At the end of a semester, I try to set aside time for an honest review. The aim is not to make the period look productive, but to understand which habits are worth keeping.
 
-## Yang berhasil semester ini
+## What helped
 
-- **Konsisten menulis** — meski cuma dua pos di blog ini, ritmenya terbentuk
-- **Satu proyek selesai sampai deploy** — bukan cuma 80% lalu pindah
-- **Berani diskusi di kelas** — ternyata bertanya itu tidak memalukan
+- **Writing regularly** made it easier to notice gaps in my understanding.
+- **Finishing a project through deployment** taught more than moving between half-finished ideas.
+- **Asking questions** was usually more useful than staying silent when something was unclear.
 
-## Yang gagal (dan pelajarannya)
+## What did not help
 
-- **Terlalu banyak tab tutorial terbuka** — akhirnya tidak ada yang selesai. Pelajaran: satu sumber, satu proyek.
-- **Menunda debugging** — "nanti malam saya perbaiki" hampir selalu berarti seminggu. Pelajaran: bug diselesaikan di hari yang sama kalau memungkinkan.
-- **Olahraga bolong** — energi turun, fokus ikut turun. Ini bukan soal teknis, tapi soal mesinnya.
+- **Too many tutorials at once.** One resource connected to one project is a better starting point.
+- **Postponing debugging.** Recording the reproduction steps immediately prevents losing the context.
+- **Ignoring rest and exercise.** Concentration depends on more than technical knowledge.
 
-## Tiga fokus semester depan
+## Priorities for the next learning cycle
 
-1. **Depth over breadth** — satu stack (React + TypeScript + Node) dikuasai dulu, baru tambah yang lain
-2. **Kontribusi open source** — mulai dari dokumentasi dan issue kecil, taklukkan rasa takut
-3. **Komunikasi tertulis** — blog, dokumentasi PR, technical writing. Skill yang makin mahal harganya
+1. **Depth over breadth.** Understand one stack before adding another.
+2. **Small open-source contributions.** Documentation and focused issue reports are useful ways to start.
+3. **Clear written communication.** Practice explaining changes through notes, pull requests, and technical documentation.
 
-## Penutup
+## A reminder
 
-> "Ship small, ship often." — entah dari mana saya dengar frasa ini, tapi jadi pengingat terbaik setiap kali perfeccionisme mengambil alih.
+> Ship small, review the result, and improve the next iteration.
 
-Kalau kamu membaca sampai sini, terima kasih. Sampai jumpa di pos berikutnya.`,
+These are learning goals, not claims that everything is already complete. Keeping the list short makes progress easier to inspect and adjust.`,
   },
-];
+ ];
 
-/**
- * Blog posts sorted by date, newest first.
- * Keep everything downstream (Home, Blog, titles) reading from this export.
- */
+/** Shared newest-first order for Home, Blog, and route titles. */
 export const SORTED_POSTS: BlogPost[] = [...POSTS].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
 
-/** All unique tags across posts, for the Blog filter UI. */
 export const ALL_TAGS: string[] = Array.from(
-  new Set(POSTS.flatMap((post) => post.tags))
+  new Set(POSTS.flatMap(post => post.tags))
 ).sort();
 
-/** Formats an ISO date (yyyy-mm-dd) as a readable label. */
+/** Explicit English locale, independent of the visitor's browser language. */
 export function formatDate(isoDate: string): string {
-  return new Date(`${isoDate}T00:00:00`).toLocaleDateString('id-ID', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
   });
 }
