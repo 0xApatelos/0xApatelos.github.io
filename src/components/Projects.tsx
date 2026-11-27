@@ -1,88 +1,36 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
-import ProjectCard from './ProjectCard';
-import { Repository } from '../types';
-import { useReveal } from '../hooks/useReveal';
+import { ArrowUpRight } from 'lucide-react';
+import { SELECTED_PROJECTS } from '../data/selectedProjects';
 
-interface ProjectsProps {
-  repos: Repository[];
-  loading: boolean;
-  error?: string | null;
-  onRetry?: () => void;
-}
-
-export default function Projects({ repos, loading, error, onRetry }: ProjectsProps) {
-  const sectionRef = useReveal<HTMLElement>([loading, repos]);
-
-  if (loading) {
-    return (
-      <div className="py-20 text-center" role="status">
-        <div className="inline-block w-8 h-8 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
-        <p className="mt-4 text-gray-600 dark:text-gray-400">Loading projects...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-red-500 dark:text-red-400 mb-4">{error}</p>
-          {onRetry && (
-            <button
-              onClick={onRetry}
-              className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors text-sm"
-            >
-              Coba Lagi
-            </button>
-          )}
-        </div>
-      </section>
-    );
-  }
-
+export default function Projects() {
   return (
-    <section ref={sectionRef} id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-10 reveal">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-              Featured <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              Project terbaru dari GitHub
-            </p>
-          </div>
-          <Link
-            to="/projects"
-            className="group hidden sm:flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
-          >
-            Lihat Semua
-            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
-
-        {repos.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-400 reveal">
-            Belum ada repository publik yang ditampilkan.
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal" style={{ transitionDelay: '200ms' }}>
-            {repos.map((repo) => (
-              <ProjectCard key={repo.id} repo={repo} />
-            ))}
-          </div>
-        )}
-
-        <div className="mt-8 text-center sm:hidden">
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400"
-          >
-            Lihat Semua Project
-            <ChevronRight className="h-4 w-4" />
-          </Link>
-        </div>
+    <section id="projects" aria-labelledby="projects-heading" className="site-container section-space scroll-mt-20 border-t border-gray-200 dark:border-gray-800">
+      <div className="section-heading">
+        <div><p className="section-label mb-3">01 / Selected work</p><h2 id="projects-heading" className="section-title">Projects & implementation.</h2></div>
+        <Link to="/projects" className="text-link shrink-0">All repositories <ArrowUpRight size={16} aria-hidden="true" /></Link>
+      </div>
+      <div className="divide-y divide-gray-200 dark:divide-gray-800">
+        {SELECTED_PROJECTS.map(project => (
+          <article key={project.id} className="grid gap-5 py-9 sm:py-10 md:grid-cols-[60px_1fr_1fr] md:gap-8">
+            <span className="font-mono text-sm text-gray-400 dark:text-gray-500" aria-hidden="true">/{project.number}</span>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{project.category}</p>
+              <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"><a className="quiet-link" href={project.url} target="_blank" rel="noopener noreferrer">{project.title}</a></h3>
+              <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-400">{project.summary}</p>
+              <ul aria-label={`Technologies used in ${project.title}`} className="mt-4 flex flex-wrap gap-2">
+                {project.stack.map(tech => <li key={tech} className="text-xs rounded border border-gray-200 dark:border-gray-700 px-2 py-1 text-gray-600 dark:text-gray-400">{tech}</li>)}
+              </ul>
+            </div>
+            <div className="md:pt-7">
+              <p className="text-sm leading-7 text-gray-700 dark:text-gray-300">{project.contribution}</p>
+              <p className="mt-3 text-xs leading-6 text-gray-500 dark:text-gray-400">{project.scope}</p>
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3">
+                <a className="text-link" href={project.evidenceUrl} target="_blank" rel="noopener noreferrer">{project.evidenceLabel} <ArrowUpRight size={14} aria-hidden="true" /></a>
+                <a className="quiet-link text-sm text-gray-500 dark:text-gray-400" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`Source code ${project.title}`}>Source ↗</a>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

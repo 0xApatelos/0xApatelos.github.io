@@ -17,7 +17,7 @@ export const SITE = {
   /** Contact email used by the contact form (mailto) and contact page. */
   email: 'rakaarendraa@gmail.com',
   /** Location shown on the contact page. */
-  location: 'Surakarta, Jawa Tengah, Indonesia',
+  location: 'Surakarta, Central Java, Indonesia',
   /** Canonical site URL (no trailing slash). */
   siteUrl: 'https://0xapatelos.github.io',
   social: {
@@ -25,8 +25,7 @@ export const SITE = {
     linkedin: 'https://www.linkedin.com/in/raka-rendra-724929279/',
   },
   /**
-   * Nama repo yang TIDAK ditampilkan di halaman Projects
-   * (selain fork yang otomatis difilter). Edit bebas sesuai kebutuhan.
+   * Repository names hidden from the Projects page. Forks are always excluded.
    */
   hiddenRepos: [
     'Tugas-Akhir-Pancasila',
@@ -37,6 +36,6 @@ export const SITE = {
     'learn-next',
     '0xApatelos',
   ],
-  /** Google Analytics 4 Measurement ID (mis. 'G-XXXXXXXXXX'). Kosongkan bila belum aktif. */
+  /** Google Analytics 4 Measurement ID (e.g. 'G-XXXXXXXXXX'). Leave empty until configured. */
   analyticsId: '',
 } as const;

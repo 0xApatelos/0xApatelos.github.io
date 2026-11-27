@@ -1,82 +1,100 @@
 import { ExperienceItem, Certificate } from '../types';
 
 /**
- * ╔══════════════════════════════════════════════════════════════╗
- * ║  PENGALAMAN & SERTIFIKAT — DATA HALAMAN EXPERIENCE          ║
- * ╚══════════════════════════════════════════════════════════════╝
- *
- * Halaman Experience menampilkan dua section dari file ini:
- *   1. EXPERIENCE  → timeline pengalaman kerja/magang/organisasi
- *   2. CERTIFICATES → kartu sertifikat
- *
- * ── CARA MENAMBAHKAN PENGALAMAN ──────────────────────────────
- * Salin satu objek di EXPERIENCE, lalu isi:
- *   id          → nomor unik berikutnya
- *   period      → rentang tanggal, mis. 'Jun 2024 - Des 2024'
- *   role        → jabatan, mis. 'IT Support Intern'
- *   org         → nama instansi/perusahaan
- *   type        → 'work' | 'intern' | 'organization' | 'freelance'
- *   description → apa yang dikerjakan + dampaknya (2-4 kalimat)
- *
- * ── CARA MENAMBAHKAN SERTIFIKAT ──────────────────────────────
- * Salin satu objek di CERTIFICATES, lalu isi:
- *   id          → nomor unik berikutnya
- *   name        → nama sertifikat
- *   issuer      → penerbit (Dicoding, Google, AWS, dll.)
- *   date        → tanggal terbit, mis. 'Mei 2025'
- *   url         → ⭐ LINK sertifikat (halaman verifikasi/download).
- *                 Contoh: 'https://dicoding.com/certificates/xxxx'
- *                 Kosongkan ('') jika belum ada link → tombol tidak ditampilkan.
- *   description → ⭐ DESKRIPSI sertifikat: topik yang dipelajari,
- *                 skill yang dibuktikan, nilai/grade jika ada.
+ * Experience and course certificates shown on /experience.
+ * Keep dates and credential metadata faithful to the issuer's verification page.
+ * Optional instructor, credentialId, courseUrl, and credentialType fields enrich
+ * course entries. An empty url omits the verification link.
+ * Describe the syllabus without inventing grades or professional qualifications.
  */
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
     id: 1,
-    period: '2024 - Sekarang',
+    period: '2024 - Present',
     role: 'Freelance Web Developer',
-    org: 'Mandiri',
+    org: 'Independent',
     type: 'freelance',
     description:
-      'Membangun dan memelihara website untuk klien kecil: landing page, integrasi form kontak, dan optimasi performa. Bertanggung jawab penuh dari diskusi kebutuhan hingga deploy.',
+      'Build and maintain websites for small clients, including landing pages, contact-form integration, and performance improvements. Responsible for the process from requirements discussions to deployment.',
   },
   {
     id: 2,
     period: '2023 - 2024',
-    role: 'Anggota Divisi Teknologi Informasi',
-    org: 'Himpunan Mahasiswa Informatika',
+    role: 'Information Technology Division Member',
+    org: 'Informatics Student Association',
     type: 'organization',
     description:
-      'Mengelola infrastruktur digital organisasi, termasuk website profil dan sistem informasi keanggotaan. Mengadakan workshop dasar web untuk mahasiswa baru.',
+      'Managed the organization’s digital infrastructure, including its profile website and membership information system. Organized introductory web workshops for new students.',
   },
-  // ── TODO: Tambahkan pengalaman lain di sini (magang, kerja kantor, dll.) ──
+
 ];
 
 export const CERTIFICATES: Certificate[] = [
+  // Dates and recipient verified against the supplied Udemy certificate pages.
+  // Descriptions summarize the published syllabus, not independent professional assessment.
+  {
+    id: 3,
+    name: 'Claude Code Power User: Architecting AI-Native Dev Workflows',
+    issuer: 'Udemy',
+    instructor: 'School of AI',
+    date: '26 November 2026',
+    credentialId: 'UC-eeed9cd7-dfa4-4804-9b3f-3e6f5da3438d',
+    credentialType: 'course-completion',
+    url: 'https://www.udemy.com/certificate/UC-eeed9cd7-dfa4-4804-9b3f-3e6f5da3438d/',
+    courseUrl: 'https://www.udemy.com/course/claude-code-power-user-architecting-ai-native-dev-workflows/',
+    description:
+      'Covers structuring CLAUDE.md, planning features with Plan Mode, and using Skills and custom commands in development workflows. Also addresses testing, human review of changes, and guardrails for AI-assisted work in a codebase. Relevant to keeping AI-assisted development structured and reviewable.',
+  },
+  {
+    id: 5,
+    name: 'Kali Linux for Ethical Hackers',
+    issuer: 'Udemy',
+    instructor: 'Cyber Twinkle & Zeronyte Security',
+    date: '26 November 2026',
+    credentialId: 'UC-ca35c472-d25b-4978-bbd7-dde6fa08d9e5',
+    credentialType: 'course-completion',
+    url: 'https://www.udemy.com/certificate/UC-ca35c472-d25b-4978-bbd7-dde6fa08d9e5/',
+    courseUrl: 'https://www.udemy.com/course/mastering-kali-linux-for-ethical-hackers/',
+    description:
+      'Covers Linux terminal and permission fundamentals, virtual lab setup, and an introduction to network scanning and security testing with Nmap, Burp Suite, and Metasploit. Supports systems and security fundamentals for IT practice; testing is limited to labs or systems with explicit authorization.',
+  },
+  {
+    id: 4,
+    name: 'DeepSeek R1 AI: 25 Real World Projects in AI for Beginners',
+    issuer: 'Udemy',
+    instructor: 'School of AI',
+    date: '5 February 2025',
+    credentialId: 'UC-e60962c2-7624-4187-930d-9d30a7c4104c',
+    credentialType: 'course-completion',
+    url: 'https://www.udemy.com/certificate/UC-e60962c2-7624-4187-930d-9d30a7c4104c/',
+    courseUrl: 'https://www.udemy.com/course/deepseek-r1-real-world-projects/',
+    description:
+      'Introduces DeepSeek through text-processing and automation examples, including summarization, chatbots, sentiment analysis, and coding and debugging assistance. Covers local model setup and NLP applications as a foundation for learning applied AI.',
+  },
   {
     id: 1,
-    name: 'Belajar Dasar Pemrograman Web',
+    name: 'Web Programming Fundamentals',
     issuer: 'Dicoding Indonesia',
-    date: 'Mei 2025',
-    // ⭐ GANTI link ini dengan URL sertifikat kamu (halaman verifikasi/download)
+    date: 'May 2025',
+
     url: '',
-    // ⭐ GANTI deskripsi ini dengan isi sertifikat kamu (topik, skill, nilai)
+
     description:
-      'Memahami fundamental HTML, CSS, dan JavaScript serta standar web modern.',
+      'Introduces HTML, CSS, JavaScript, and modern web fundamentals.',
   },
   {
     id: 2,
     name: 'Introduction to Data Science',
     issuer: 'IBM / Coursera',
     date: '2025',
-    // ⭐ GANTI link ini dengan URL sertifikat kamu
+
     url: '',
-    // ⭐ GANTI deskripsi ini dengan isi sertifikat kamu
+
     description:
-      'Pengenalan alur kerja data science: Python, analisis data, dan machine learning dasar.',
+      'An introduction to data science workflows, Python, data analysis, and machine learning fundamentals.',
   },
-  // ── TODO: Tambahkan sertifikat lain di sini ──
-  // Salin satu blok { id, name, issuer, date, url, description } lalu ganti isinya.
-  // url: '' akan menyembunyikan tombol "Lihat Sertifikat" sampai diisi.
+
+
+
 ];

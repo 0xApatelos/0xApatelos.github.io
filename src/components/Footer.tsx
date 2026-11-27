@@ -1,11 +1,11 @@
-import { Github, Linkedin, Heart } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE } from '../config/site';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="bg-gray-50 dark:bg-gray-950/30 border-t border-gray-200 dark:border-gray-700/50">
+      <div className="site-container py-10">
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div>
@@ -60,8 +60,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700/50 text-center">
           <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
-            © {new Date().getFullYear()} {SITE.name}. Made with
-            <Heart className="h-3.5 w-3.5 text-red-500 fill-red-500" />
+            © {new Date().getFullYear()} {SITE.name}.
           </p>
         </div>
       </div>

@@ -12,7 +12,7 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <div className="py-16 text-center">
-        <p className="text-xl text-gray-600 dark:text-gray-400">Post tidak ditemukan</p>
+        <p className="text-xl text-gray-600 dark:text-gray-400">Post not found</p>
         <Link
           to="/blog"
           className="mt-4 inline-flex items-center text-blue-600 dark:text-blue-400"
@@ -77,7 +77,7 @@ export default function BlogPostPage() {
               className="group flex-1 p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 transition-colors"
             >
               <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mb-1">
-                <ArrowLeft className="h-3 w-3" /> Post sebelumnya
+                <ArrowLeft className="h-3 w-3" /> Older article
               </span>
               <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                 {older.title}
@@ -92,7 +92,7 @@ export default function BlogPostPage() {
               className="group flex-1 p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 transition-colors text-right"
             >
               <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end gap-1 mb-1">
-                Post berikutnya <ArrowRight className="h-3 w-3" />
+                Newer article <ArrowRight className="h-3 w-3" />
               </span>
               <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                 {newer.title}
@@ -107,7 +107,7 @@ export default function BlogPostPage() {
             onClick={() => navigate('/blog')}
             className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
           >
-            ← Kembali ke daftar blog
+            ← Back to all articles
           </button>
         </div>
       </div>

@@ -57,14 +57,14 @@ export default function Analytics() {
 
   if (!enabled) return null;
   if (consent === 'accepted' || consent === 'declined') {
-    return <div className="print:hidden text-center py-3 text-sm"><button type="button" className="underline text-gray-600 dark:text-gray-400" onClick={() => { choose(''); window.location.reload(); }}>Pengaturan analytics</button></div>;
+    return <div className="print:hidden text-center py-3 text-sm"><button type="button" className="underline text-gray-600 dark:text-gray-400" onClick={() => { choose(''); window.location.reload(); }}>Analytics settings</button></div>;
   }
   return (
-    <aside aria-label="Persetujuan analytics" className="print:hidden bg-blue-50 dark:bg-gray-800 border-t border-blue-200 dark:border-gray-700 p-5">
+    <aside aria-label="Analytics consent" className="print:hidden bg-blue-50 dark:bg-gray-800 border-t border-blue-200 dark:border-gray-700 p-5">
       <div className="max-w-4xl mx-auto flex flex-wrap items-center gap-4">
-        <p className="flex-1 min-w-[220px] text-sm text-gray-700 dark:text-gray-300">Izinkan Google Analytics mengukur kunjungan dan halaman yang dibuka? Google dapat menggunakan cookie dan memproses data kunjungan. Pilihan ini opsional; isi form kontak tidak dikirim. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privasi Google</a></p>
-        <button type="button" onClick={() => choose('declined')} className="px-4 py-2 rounded-lg border border-gray-400 text-gray-800 dark:text-gray-100">Tolak</button>
-        <button type="button" onClick={() => choose('accepted')} className="px-4 py-2 rounded-lg bg-blue-600 text-white">Izinkan</button>
+        <p className="flex-1 min-w-[220px] text-sm text-gray-700 dark:text-gray-300">Allow Google Analytics to measure visits and page views? Google may use cookies and process visit data. This is optional; contact-form contents are never sent to analytics. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Google privacy policy</a></p>
+        <button type="button" onClick={() => choose('declined')} className="px-4 py-2 rounded-lg border border-gray-400 text-gray-800 dark:text-gray-100">Decline</button>
+        <button type="button" onClick={() => choose('accepted')} className="px-4 py-2 rounded-lg bg-blue-600 text-white">Allow</button>
       </div>
     </aside>
   );

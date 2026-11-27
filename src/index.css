@@ -15,8 +15,11 @@
 
   body {
     @apply antialiased;
+    text-rendering: optimizeLegibility;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+
+  :focus-visible { outline: 2px solid #2563eb; outline-offset: 4px; }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
@@ -33,10 +36,22 @@
   }
 }
 
+@layer components {
+  .site-container { @apply max-w-6xl mx-auto px-5 sm:px-8; }
+  .section-space { @apply py-14 sm:py-20; }
+  .section-label { @apply text-xs font-medium tracking-widest uppercase text-gray-500 dark:text-gray-400; }
+  .section-title { @apply text-2xl sm:text-3xl font-semibold tracking-tight leading-tight text-gray-900 dark:text-gray-100; }
+  .section-heading { @apply mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-5; }
+  .button-primary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium bg-gray-900 text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white transition-colors; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors; }
+  .text-link { @apply inline-flex items-center gap-2 text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline underline-offset-4; }
+  .quiet-link { @apply hover:underline underline-offset-4; }
+  .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-3 focus:rounded; }
+}
+
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   .bg-gradient-hero {

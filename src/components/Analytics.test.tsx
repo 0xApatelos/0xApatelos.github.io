@@ -27,14 +27,14 @@ describe('optional consent-gated GA4', () => {
   it('loads nothing with no Measurement ID', () => {
     config.analyticsId = '';
     renderAnalytics();
-    expect(screen.queryByLabelText('Persetujuan analytics')).toBeNull();
+    expect(screen.queryByLabelText('Analytics consent')).toBeNull();
     expect(document.getElementById('portfolio-ga4')).toBeNull();
   });
 
   it('loads nothing before consent or after rejection', () => {
     renderAnalytics();
     expect(document.getElementById('portfolio-ga4')).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: 'Tolak' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Decline' }));
     expect(localStorage.getItem('portfolio-analytics-consent')).toBe('declined');
     expect(document.getElementById('portfolio-ga4')).toBeNull();
     expect(window.dataLayer).toBeUndefined();
@@ -42,7 +42,7 @@ describe('optional consent-gated GA4', () => {
 
   it('initializes once after consent and tracks hash-router pages with correct titles', () => {
     renderAnalytics();
-    fireEvent.click(screen.getByRole('button', { name: 'Izinkan' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Allow' }));
     expect(document.querySelectorAll('#portfolio-ga4')).toHaveLength(1);
     expect(commands().filter(args => args[0] === 'config')).toHaveLength(1);
     expect(commands().filter(args => args[1] === 'page_view')).toHaveLength(1);
@@ -66,7 +66,7 @@ describe('optional consent-gated GA4', () => {
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
     try {
       renderAnalytics();
-      fireEvent.click(screen.getByRole('button', { name: 'Tolak' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Decline' }));
       expect(document.getElementById('portfolio-ga4')).toBeNull();
     } finally { vi.restoreAllMocks(); }
   });

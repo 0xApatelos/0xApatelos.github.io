@@ -43,7 +43,7 @@ export default function Blog() {
           <span className="text-gradient">Blog</span>
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mb-8">
-          Tulisan tentang teknologi, pengalaman, dan hal-hal menarik lainnya.
+          Notes on technology, projects, and what I learn along the way.
         </p>
 
         {/* Tag filter */}
@@ -57,7 +57,7 @@ export default function Blog() {
                 : 'bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-blue-400'
             }`}
           >
-            Semua
+            All
           </button>
           {ALL_TAGS.map((tag) => (
             <button
@@ -110,7 +110,7 @@ export default function Blog() {
                 to={`/blog/${post.id}`}
                 className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 group/link"
               >
-                Baca Selengkapnya
+                Read article
                 <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover/link:translate-x-1" />
               </Link>
             </article>
@@ -118,7 +118,7 @@ export default function Blog() {
 
           {filteredPosts.length === 0 && (
             <p className="text-center text-gray-500 dark:text-gray-400 py-10">
-              Tidak ada post dengan tag “{activeTag}”.
+              No articles tagged “{activeTag}”.
             </p>
           )}
         </div>

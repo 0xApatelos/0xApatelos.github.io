@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildMailto } from './mailto';
+import { buildMailto, buildGmailCompose, buildEmailDraft } from './mailto';
 
 describe('buildMailto', () => {
   it('builds a mailto URL with encoded subject and body', () => {
@@ -53,5 +53,24 @@ describe('buildMailto', () => {
     });
 
     expect(decodeURIComponent(url)).toContain('subject=Halo dari Ana');
+  });
+});
+
+ describe('webmail draft helpers', () => {
+  it('encodes reserved characters and Unicode without adding recipients or fragments', () => {
+    const input = { to: 'raka@example.com', name: 'Zoë & Co #?', email: 'zoe@example.com', message: 'Hello & cc=other@example.com\nSecond line #1' };
+    const url = new URL(buildGmailCompose(input));
+    expect(url.origin).toBe('https://mail.google.com');
+    expect(url.searchParams.get('to')).toBe(input.to);
+    expect(url.searchParams.get('body')).toBe(buildEmailDraft(input).body);
+    expect(url.searchParams.get('su')).toBe('Portfolio Contact from Zoë & Co #?');
+    expect(url.searchParams.has('cc')).toBe(false);
+    expect(url.hash).toBe('');
+  });
+
+  it('allows an empty draft without implying that a message was sent', () => {
+    const input = { to: 'raka@example.com', name: '', email: '', message: '' };
+    expect(new URL(buildGmailCompose(input)).searchParams.get('to')).toBe(input.to);
+    expect(buildEmailDraft(input).subject).toBe('Portfolio Contact from');
   });
 });
