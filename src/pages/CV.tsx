@@ -1,7 +1,7 @@
 import { Printer, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE } from '../config/site';
-import { SELECTED_PROJECTS } from '../data/selectedProjects';
+import { CV_EXPERIENCE, CV_PROFILE, CV_PROJECTS, CV_SKILLS } from '../data/cv';
 
 export default function CV() {
   return (
@@ -20,6 +20,7 @@ export default function CV() {
             <p className="text-lg font-medium text-blue-700 dark:text-blue-300 mb-4">{SITE.tagline}</p>
             <address className="not-italic text-sm flex flex-col gap-1.5 break-words">
               <span>{SITE.location}</span>
+              <a href={CV_PROFILE.phoneHref} className="underline">{CV_PROFILE.phone}</a>
               <a href={`mailto:${SITE.email}`} className="underline">{SITE.email}</a>
               <a href={SITE.social.linkedin} className="underline">{SITE.social.linkedin}</a>
               <a href={SITE.social.github} className="underline">{SITE.social.github}</a>
@@ -28,22 +29,35 @@ export default function CV() {
           </header>
           <section>
             <h2 className="text-lg font-semibold mb-2">Profile</h2>
-            <p className="leading-relaxed text-sm">Focused on practical IT and AI exploration. Building web projects while continuing independent learning in troubleshooting, automation, and AI integration.</p>
+            <p className="leading-relaxed text-sm">{CV_PROFILE.summary}</p>
           </section>
-          <section>
-            <h2 className="text-lg font-semibold mb-2">Skills & focus</h2>
+          <section aria-labelledby="cv-experience-heading">
+            <h2 id="cv-experience-heading" className="text-lg font-semibold mb-3">Relevant experience</h2>
+            <div className="space-y-5 text-sm leading-relaxed">
+              {CV_EXPERIENCE.map(experience => (
+                <div key={experience.id} className="cv-entry">
+                  <h3 className="font-semibold">{experience.title}</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-400">{experience.context} · {experience.period}</p>
+                  <ul className="mt-2 list-disc pl-5 space-y-1">
+                    {experience.responsibilities.map(item => <li key={item}>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+          <section className="cv-entry">
+            <h2 className="text-lg font-semibold mb-2">Technical skills & working approach</h2>
             <ul className="list-disc pl-5 space-y-2 text-sm leading-relaxed">
-              <li>IT: foundations in troubleshooting, operating systems, networking, and system administration.</li>
-              <li>AI: exploring Python, data analysis, prompt engineering, and AI integration.</li>
-              <li>Supporting tools: Git, GitHub, command-line tools, web development, and workflow automation.</li>
+              {CV_SKILLS.map(skill => <li key={skill.label}><span className="font-semibold">{skill.label}:</span> {skill.detail}</li>)}
             </ul>
           </section>
           <section>
-            <h2 className="text-lg font-semibold mb-2">Projects</h2>
+            <h2 className="text-lg font-semibold mb-2">Selected technical projects</h2>
             <div className="space-y-4 text-sm leading-relaxed">
-              {SELECTED_PROJECTS.map(project => <div key={project.id}>
+              {CV_PROJECTS.map(project => <div key={project.id} className="cv-entry">
                 <h3 className="font-semibold">{project.title}</h3>
                 <p>{project.summary}</p>
+                <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">Technologies: {project.stack.join(', ')}</p>
                 <p className="mt-1 text-xs">{project.scope}</p>
                 <a className="underline inline-flex items-center gap-1 break-all" href={project.url}>{project.url.replace('https://', '')} <ExternalLink size={12} className="print:hidden shrink-0" aria-hidden="true" /></a>
               </div>)}
@@ -53,6 +67,7 @@ export default function CV() {
             <h2 className="text-lg font-semibold mb-2">Education</h2>
             <p className="font-medium text-sm">Undergraduate studies in Informatics — Universitas Muhammadiyah Surakarta</p>
             <p className="text-sm mt-1">Started in 2022 · Currently on academic leave. Degree not yet completed.</p>
+            <p className="text-sm mt-2 leading-relaxed">Relevant coursework: {CV_PROFILE.coursework.join(', ')}.</p>
           </section>
         </article>
       </div>

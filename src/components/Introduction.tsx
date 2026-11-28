@@ -37,7 +37,7 @@ export default function Introduction() {
         </figure>
       </div>
       <div className="mt-12 sm:mt-16 border-t border-gray-200 dark:border-gray-800 pt-5 flex flex-wrap gap-x-8 gap-y-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-        <span>01 / Selected work</span><span>02 / Focus & practice</span><span>03 / Field notes</span>
+        <span>01 / From GitHub</span><span>02 / Focus & practice</span><span>03 / Field notes</span>
       </div>
     </section>
   );

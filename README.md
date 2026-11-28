@@ -126,7 +126,7 @@ src/
 ├── constants/
 │   └── languages.ts   # Shared GitHub language colors
 ├── data/
-│   ├── selectedProjects.ts # Curated home project summaries, scope, and evidence links
+│   ├── selectedProjects.ts # CV projects and English repository-card summaries
 │   ├── posts.ts       # ⭐ Blog content (Markdown)
 │   └── experience.ts  # ⭐ Experience & certificate entries
 ├── hooks/
@@ -185,9 +185,20 @@ entries without verification URLs remain visible without an invented link.
 
 ### 4. CV
 
-The recruiter-facing CV lives at `#/cv`, edited in `src/pages/CV.tsx`.
-Contact details come from `SITE`, and its project list shares the curated English
-project data with Home. The hero, navigation, and footer link to it.
+The recruiter-facing CV lives at `#/cv`, rendered by `src/pages/CV.tsx`.
+`src/data/cv.ts` holds the English profile, phone, laboratory experience, skills,
+and coursework transcribed from the owner-supplied **CV Raka 2026.pdf**. These are
+self-reported details, not independently verified employment claims. Both laboratory
+roles ran January–July 2025; academic leave and the unfinished degree are explicit.
+Other contact details come from `SITE`. The original PDF is not published in this
+repository. Review the public phone number before deploying if privacy preferences change.
+
+The static CV project list highlights IT-Inventaris, IT Operation Lab, and the
+portfolio, reusing relevant entries from `src/data/selectedProjects.ts`. It does
+not depend on GitHub API availability. The older `/experience` entries are separate
+and need owner confirmation before alignment with the PDF. No client work or
+organization role absent from the supplied PDF is added to this CV.
+The hero, navigation, and footer link to it.
 The print button opens the browser dialog; select **Save as PDF** to download.
 This is not a pre-uploaded PDF. Check all personal facts before sending to recruiters.
 Education explicitly states leave of absence, not graduation or active enrollment.
@@ -212,13 +223,21 @@ No analytics property or Measurement ID has been provisioned by this repository.
 ### 6. Project curation
 
 `SITE.hiddenRepos` hides repositories by name (case-insensitive). Forks are always
-excluded, including when serving cached data. This affects the full Projects page;
+excluded, including when serving cached data. This affects Home and the full Projects page;
 it does not delete or modify any GitHub repository.
 
-Home uses a small editorial selection in `src/data/selectedProjects.ts` rather
-than the latest three API results. It remains available when GitHub is rate-limited
-or offline. Keep each contribution and limitation factual, and review external
-project status before changing the copy. No project metrics are fabricated.
+Home shows the first three eligible repositories returned by `useGitHubRepos`,
+ordered by latest update. New public repositories can appear automatically after
+cache expiry; the profile README repository and other hidden names are excluded
+before the three-item limit is applied. Cards show name, summary, language, stars,
+and forks, with a link to GitHub. The section includes loading, empty, and error
+states, a retry button, and a direct GitHub fallback. The existing five-minute
+session cache and ETag revalidation are shared with the Projects page.
+
+`src/data/selectedProjects.ts` remains the curated data source for the CV and
+English summary overrides on matching repository cards; it no longer determines
+which repositories appear on Home. Unknown repositories use their GitHub About
+text, or an English fallback if no description is set. No metrics are fabricated.
 
 ### 7. Visual direction
 
