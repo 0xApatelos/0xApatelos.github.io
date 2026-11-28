@@ -10,7 +10,7 @@ export default function Skills() {
         <p className="section-label mb-3">02 / Focus & practice</p>
         <h2 id="focus-heading" className="section-title">Learning through practice.</h2>
         <div className="mt-9 grid md:grid-cols-2 gap-9 md:gap-16">
-          {FOCUS.map(item => <article key={item.title}>
+          {FOCUS.map(item => <article key={item.title} className="focus-accent">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item.title}</h3>
             <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-400">{item.description}</p>
             <p className="mt-4 text-xs leading-6 text-gray-500 dark:text-gray-400">{item.tools}</p>

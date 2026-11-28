@@ -20,11 +20,11 @@ export default function ProjectCard({ repo, showForks = false }: ProjectCardProp
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${repo.name} on GitHub`}
-      className="group relative block p-6 rounded-md bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700/50 hover:border-blue-500/30 transition-colors duration-200"
+      className="repo-card group relative block p-6 rounded-md bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700/50 transition-colors duration-200"
     >
       <div className="relative">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-all pr-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white transition-colors break-all pr-2">
             {repo.name}
           </h3>
           <ExternalLink className="h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-blue-500 transition-colors mt-1" />
