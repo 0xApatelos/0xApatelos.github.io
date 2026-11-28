@@ -109,7 +109,11 @@
     box-shadow: none !important;
   }
   .cv-document * { color: black !important; border-color: #ddd !important; }
-  .cv-document section { break-inside: avoid; }
+  .cv-document .cv-entry, .cv-document header { break-inside: avoid; }
+  .cv-document h2, .cv-document h3 { break-after: avoid; }
+  .cv-document p, .cv-document li { orphans: 2; widows: 2; }
   .cv-document { font-size: 10pt; }
+  .cv-document > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem !important; }
+  .cv-document header { padding-bottom: 1rem !important; }
   a { text-decoration: none; }
 }

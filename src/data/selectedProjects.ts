@@ -20,7 +20,7 @@ export const SELECTED_PROJECTS = [
     category: 'Web development',
     summary: 'A personal website for projects, writing, and my CV, without relying on a portfolio-builder platform.',
     contribution: 'Built the React and TypeScript interface, GitHub API integration, blog navigation, and a printable CV.',
-    scope: 'The full repository list uses the GitHub API; this curated selection stays available without it.',
+    scope: 'Repository previews use the GitHub API; the CV content remains available without it for reliable printing.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     url: 'https://github.com/0xApatelos/0xApatelos.github.io',
     evidenceUrl: 'https://github.com/0xApatelos/0xApatelos.github.io#readme',

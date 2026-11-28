@@ -9,7 +9,7 @@ interface ProjectCardProps {
 }
 
 /**
- * Clickable GitHub repository card on the full Projects page.
+ * GitHub repository preview shared by Home and the full Projects page.
  * Known projects use the curated English copy rather than remote About text.
  */
 export default function ProjectCard({ repo, showForks = false }: ProjectCardProps) {
@@ -43,13 +43,13 @@ export default function ProjectCard({ repo, showForks = false }: ProjectCardProp
               <span>{repo.language}</span>
             </div>
           )}
-          <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-            <Star className="h-3.5 w-3.5" />
+          <div aria-label={`${repo.stargazers_count} stars`} className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+            <Star className="h-3.5 w-3.5" aria-hidden="true" />
             <span>{repo.stargazers_count}</span>
           </div>
           {showForks && (
-            <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-              <GitFork className="h-3.5 w-3.5" />
+            <div aria-label={`${repo.forks_count} forks`} className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+              <GitFork className="h-3.5 w-3.5" aria-hidden="true" />
               <span>{repo.forks_count}</span>
             </div>
           )}
