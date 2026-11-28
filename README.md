@@ -242,9 +242,11 @@ text, or an English fallback if no description is set. No metrics are fabricated
 ### 7. Visual direction
 
 The homepage prioritizes selected work, plain-language contributions, and visible
-limitations. It uses a neutral palette, one blue link accent, and consistent
-spacing rather than animated typing, floating orbs, rainbow gradients, or skill
-percentage cards. The hero uses an optimized 640×800 WebP portrait from `src/assets/profile.webp`
+limitations. Neutral reading surfaces are paired with bright cyan buttons, cyan
+and violet accents, and a small lime portrait detail. Accent text uses darker
+tones in light mode and brighter tones in dark mode for readability. There are
+no animated neon effects, floating orbs, or skill percentage cards; the printable
+CV remains black on white. Shared accent tokens live in `src/index.css`. The hero uses an optimized 640×800 WebP portrait from `src/assets/profile.webp`
 (with a Vite content-hashed URL); the original remains in `public/images/profile.jpg`
 for existing social-preview URLs. Regenerate the WebP when replacing the portrait.
 Light/dark themes, keyboard focus, a skip link, CV printing,

@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <NavLink to="/" end className="flex items-center gap-2 text-gray-900 dark:text-white group">
-              <span className="font-semibold text-sm tracking-tight">{SITE.shortName}<span className="text-blue-700 dark:text-blue-400">.</span></span>
+              <span className="font-semibold text-sm tracking-tight">{SITE.shortName}<span className="accent-text">.</span></span>
               <span className="hidden lg:inline text-xs text-gray-500 dark:text-gray-400 ml-2">Portfolio</span>
             </NavLink>
           </div>
@@ -51,7 +51,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `px-3 py-2 rounded text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10'
+                      ? 'accent-nav'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`
                 }
@@ -101,7 +101,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
                     isActive
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10'
+                      ? 'accent-nav'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`
                 }

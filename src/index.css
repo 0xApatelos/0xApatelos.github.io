@@ -5,6 +5,22 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --accent-ink: #0e7490;
+    --accent-bright: #22d3ee;
+    --accent-secondary: #7c3aed;
+    --accent-surface: #ecfeff;
+    --accent-border: #a5f3fc;
+    --accent-focus: #0e7490;
+  }
+  .dark {
+    --accent-ink: #67e8f9;
+    --accent-secondary: #c4b5fd;
+    --accent-surface: #15323f;
+    --accent-border: #226072;
+    --accent-focus: #67e8f9;
+  }
+
   * {
     @apply box-border;
   }
@@ -19,7 +35,9 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
-  :focus-visible { outline: 2px solid #2563eb; outline-offset: 4px; }
+  :focus-visible { outline: 2px solid var(--accent-focus); outline-offset: 4px; }
+
+  ::selection { background: #a5f3fc; color: #111827; }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
@@ -39,13 +57,26 @@
 @layer components {
   .site-container { @apply max-w-6xl mx-auto px-5 sm:px-8; }
   .section-space { @apply py-14 sm:py-20; }
-  .section-label { @apply text-xs font-medium tracking-widest uppercase text-gray-500 dark:text-gray-400; }
+  .section-label { @apply text-xs font-medium tracking-widest uppercase; color: var(--accent-ink); }
   .section-title { @apply text-2xl sm:text-3xl font-semibold tracking-tight leading-tight text-gray-900 dark:text-gray-100; }
   .section-heading { @apply mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-5; }
-  .button-primary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium bg-gray-900 text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white transition-colors; }
-  .button-secondary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors; }
-  .text-link { @apply inline-flex items-center gap-2 text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline underline-offset-4; }
+  .button-primary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium bg-cyan-300 text-gray-950 hover:bg-cyan-200 transition-colors; box-shadow: 0 3px 18px #22d3ee20; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-3 rounded px-5 py-3 text-sm font-medium border transition-colors; color: var(--accent-ink); border-color: var(--accent-border); background: var(--accent-surface); }
+  .text-link { @apply inline-flex items-center gap-2 text-sm font-medium hover:underline underline-offset-4; color: var(--accent-ink); }
   .quiet-link { @apply hover:underline underline-offset-4; }
+  .accent-text { color: var(--accent-ink); }
+  .accent-nav { color: var(--accent-ink); background: var(--accent-surface); box-shadow: inset 0 -2px 0 var(--accent-bright); }
+  .hero-accent { background: radial-gradient(ellipse at 90% 30%, #22d3ee0b, transparent 60%); }
+  .portrait-accent { position: relative; padding: 8px; border: 1px solid var(--accent-border); border-radius: 4px; background: linear-gradient(140deg, #22d3ee18, #a78bfa18 70%, #bef26420); }
+  .portrait-accent::before { content: ''; position: absolute; top: -2px; right: 24px; height: 4px; width: 64px; border-radius: 2px; background: #a3e635; }
+  .repo-card { overflow: hidden; }
+  .repo-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, #22d3ee, #a78bfa); }
+  .repo-card:hover, .repo-card:focus-visible { border-color: var(--accent-ink); background: var(--accent-surface); }
+  .repo-card:hover h3, .repo-card:focus-visible h3 { color: var(--accent-ink); }
+  .focus-accent { border-left: 3px solid #22d3ee; padding-left: 20px; }
+  .focus-accent:nth-child(2) { border-color: #a78bfa; }
+  .focus-accent:nth-child(2) h3 { color: var(--accent-secondary); }
+
   .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-3 focus:rounded; }
 }
 

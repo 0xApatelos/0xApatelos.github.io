@@ -5,12 +5,12 @@ import { SITE } from '../config/site';
 
 export default function Introduction() {
   return (
-    <section aria-labelledby="intro-heading" className="site-container pt-14 pb-14 sm:pt-20 sm:pb-20">
+    <section aria-labelledby="intro-heading" className="hero-accent site-container pt-14 pb-14 sm:pt-20 sm:pb-20">
       <div className="grid items-center gap-10 md:grid-cols-[1fr_280px] lg:grid-cols-[1fr_320px] lg:gap-20">
         <div>
           <p className="section-label mb-6">Portfolio / Surakarta, Indonesia</p>
           <h1 id="intro-heading" className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.055em] leading-[1.08] text-gray-900 dark:text-gray-50">
-            {SITE.name.split(' ').slice(0, 2).join(' ')}<br />{SITE.name.split(' ').slice(2).join(' ')}<span className="text-blue-700 dark:text-blue-400">.</span>
+            {SITE.name.split(' ').slice(0, 2).join(' ')}<br />{SITE.name.split(' ').slice(2).join(' ')}<span className="accent-text">.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl font-medium text-gray-800 dark:text-gray-200">{SITE.tagline}</p>
           <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
@@ -31,7 +31,7 @@ export default function Introduction() {
             <Link className="quiet-link" to="/contact">Get in touch ↗</Link>
           </div>
         </div>
-        <figure className="max-w-[320px] w-full md:justify-self-end">
+        <figure className="portrait-accent max-w-[320px] w-full md:justify-self-end">
           <img src={profile} alt={SITE.name} width={640} height={800} loading="eager" decoding="async" className="aspect-[4/5] w-full object-cover object-center rounded-sm bg-gray-100 dark:bg-gray-800" />
           <figcaption className="flex justify-between gap-4 mt-3 text-xs text-gray-500 dark:text-gray-400"><span>Raka Rendra Fayanto</span><span>Indonesia / UTC+7</span></figcaption>
         </figure>
